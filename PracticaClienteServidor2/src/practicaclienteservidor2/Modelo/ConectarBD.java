@@ -8,7 +8,7 @@ import java.sql.*;
 public class ConectarBD {
  
     private Connection conexion = null;
-    private String servidor = "localhost:3306";
+    private String servidor = "127.0.0.1:3306";
     private String database = "cslinventario";
     private String usuario = "root";
     private String password = "";
