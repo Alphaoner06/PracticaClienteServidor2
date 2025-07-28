@@ -1,93 +1,97 @@
 package practicaclienteservidor2.Modelo;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.*;
 
-import practicaclienteservidor2.Controlador.Articulo;
+import practicaclienteservidor2.Controlador.Caja;
 
 public class DatosCaja {
-    public void insertar(Articulo arti){
+    public void insertar(Caja caja){
     try{
        //1-crear la conexion con la base de datos
        ConectarBD con;
         con = new ConectarBD();
        //2-creamos la sentencia
-       PreparedStatement misql = con.crearPreparedStatement("INSERTE INTO articulo VALUES(?,?,?)");
-       misql.setInt(1,arti.getCodigo());
-       misql.setString(2, arti.getDescripcion());
-       misql.setFloat(3,arti.getPrecio());
+       PreparedStatement misql = con.crearPreparedStatement("INSERTE INTO caja VALUES(?,?,?,?)");
+       misql.setInt(1,caja.getNumeroReferencia());
+       misql.setString(2, caja.getContenido());
+       misql.setInt(3,caja.getPrecio());
+       misql.setInt(4, caja.getAlmacen());
        //3-ejecutar el comando sql
        misql.executeUpdate();
        //4-cerrar la conexion 
        con.cerrarConexion();
     }catch(SQLException e){
-        Logger.getLogger(DatosArticulo.class.getName()).log(Level.SEVERE,null,e);
+        Logger.getLogger(DatosCaja.class.getName()).log(Level.SEVERE,null,e);
         
     }
 }
-  public ArrayList<Articulo>todosArticulos(){
-      ArrayList<Articulo>miListaArticulo=new ArrayList<>();
+  public ArrayList<Caja>listaCajas(){
+      ArrayList<Caja>miListaCaja=new ArrayList<>();
       try{
           //1-crear la conexion con la base de datos
        ConectarBD con=new ConectarBD();
         //2-creamos la sentencia
-        Statement st=con.crearStatemnt();
-        ResultSet rs=st.executeQuery("SELECT*FROM articulo");
+        Statement st=con.crearStatement();
+        ResultSet rs=st.executeQuery("SELECT*FROM caja");
         while (rs.next()){
-            Articulo arti=new Articulo(rs.getInt("codigo"),
-                    rs.getString("descripcion"),rs.getFloat("precio"));
-            miListaArticulo.add(arti);//se agrega un articulo a la lista
+            Caja caja=new Caja(
+                rs.getInt("numReferencias"),
+                rs.getString("Contenido"),
+                rs.getInt("Precio"),
+                rs.getInt("Almacen")
+            );
+            miListaCaja.add(caja);//se agrega un articulo a la lista
         }
         //3 cerrar la busqueda y la conexion
         rs.close();
         con.cerrarConexion();
         }catch(SQLException e){
-            Logger.getLogger(DatosArticulo.class.getName()).log(Level.SEVERE, null,e);
+            Logger.getLogger(DatosCaja.class.getName()).log(Level.SEVERE, null,e);
         }
-      return miListaArticulo;
+      return miListaCaja;
   }
 
- public ArrayList<Articulo>BuscarArticuloDescripcion(String descripcion){
-      ArrayList<Articulo>miListaArticulo=new ArrayList<>();
+ public ArrayList<Caja>BuscarCajaContenido(String contenido){
+      ArrayList<Caja>miListaCajas=new ArrayList<>();
       try{
           //1-crear la conexion con la base de datos
        ConectarBD con=new ConectarBD();
         //2-creamos la sentencia
         PreparedStatement misql
-            =con.crearPreparedStatement("SELECT*FROM articulo WHERE descripcion like?");
-        descripcion='%'+descripcion+'%';
-        misql.setString(1, descripcion);
-        ResulSet rs= misql.executeQuery();
+            =con.crearPreparedStatement("SELECT*FROM caja WHERE Contenido like ?");
+        contenido='%'+contenido+'%' + '%';
+        misql.setString(1, contenido);
+        ResultSet rs= misql.executeQuery();
         while (rs.next()){
-            Articulo arti=new Articulo(rs.getInt("codigo"),
-                    rs.getString("descripcion"),rs.getFloat("precio"));
-            miListaArticulo.add(arti);//se agrega un articulo a la lista
+            Caja caja = new Caja(
+                rs.getInt("numReferencias"),
+                rs.getString("Contenido"),
+                rs.getInt("Precio"),
+                rs.getInt("Almacen")
+            );
+            miListaCajas.add(caja);//se agrega un articulo a la lista
         }
         //3 cerrar la busqueda y la conexion
         rs.close();
         con.cerrarConexion();
         }catch(SQLException e){
-            Logger.getLogger(DatosArticulo.class.getName()).log(Level.SEVERE, null,e);
+            Logger.getLogger(DatosCaja.class.getName()).log(Level.SEVERE, null,e);
         }
-      return miListaArticulo;
+      return miListaCajas;
   }
  public void eliminarArticulo(int codigo){
      try{
                  //1-crear la conexion con la base de datos
        ConectarBD con=new ConectarBD(); 
        //2-creamos la sentencia 
-        Statement st=con.crearStatemnt();
+        Statement st=con.crearStatement();
         ResultSet rs=st.executeQuery("DELETE*FROM articulo WHERE codigo=?");
         rs.close();
         con.cerrarConexion();
       }catch(SQLException e){
-          Logger.getLogger(DatosArticulo.class.getName()).log(Level.SEVERE, null,e);
+          Logger.getLogger(DatosCaja.class.getName()).log(Level.SEVERE, null,e);
       }
  }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2ce8521455f16f4e2c33a2537a88864de2c2d385

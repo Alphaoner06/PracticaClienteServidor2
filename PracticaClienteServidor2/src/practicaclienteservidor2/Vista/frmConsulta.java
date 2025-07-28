@@ -2,13 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package practicaclienteservidor2.Modelo.Vista;
-
-import clase11.Controlador.Articulo;
-import clase11.Modelo.DatosArticulo;
-import static clase11.Vista.frmArticulo.jtArticulo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
+
+import practicaclienteservidor2.Modelo.DatosCaja;
 
 /**
  *
@@ -27,8 +24,8 @@ public class frmConsulta extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jtArticulo.getModel();
         model.setNumRows(0);
         
-        DatosArticulo dArti= new DatosArticulo();
-        ArrayList<Articuloz>miListaArticulo =dArti.todosArticulos();
+        DatosCaja caja= new DatosArticulo();
+        ArrayList<Caja>miListaCajas = ca.todosArticulos();
         String datos[]= new String[3];
         int i 0;
         
