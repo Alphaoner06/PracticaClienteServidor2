@@ -86,4 +86,8 @@ public class DatosCaja {
           Logger.getLogger(DatosArticulo.class.getName()).log(Level.SEVERE, null,e);
       }
  }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 2ce8521455f16f4e2c33a2537a88864de2c2d385
