@@ -1,6 +1,6 @@
 package practicaclienteservidor2.Modelo;
 
-import clase11.Controlador.Articulo;
+import cl.Controlador.Articulo;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.*;
