@@ -4,6 +4,8 @@
  */
 package practicaclienteservidor2;
 
+import practicaclienteservidor2.Modelo.Vista.frmMenu;
+
 /**
  *
  * @author Alanm
@@ -14,7 +16,8 @@ public class PracticaClienteServidor2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        
     }
     
 }
