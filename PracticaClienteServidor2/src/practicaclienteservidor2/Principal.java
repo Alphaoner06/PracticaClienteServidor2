@@ -4,19 +4,21 @@
  */
 package practicaclienteservidor2;
 
-import practicaclienteservidor2.Modelo.Vista.frmMenu;
+import practicaclienteservidor2.Vista.frmArticulo;
 
 /**
  *
  * @author Alanm
  */
-public class PracticaClienteServidor2 {
+public class Principal {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        frmArticulo fm  = new frmArticulo();
+        fm.setVisible(true);
+        fm.setLocationRelativeTo(null);
         
     }
     
